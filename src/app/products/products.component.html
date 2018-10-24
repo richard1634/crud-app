@@ -1,0 +1,23 @@
+<div>
+	<input #titleInput placeholder="title" />
+	<input #priceInput placeholder="price" />
+	<input #timeInput placeholder="time" />
+	<button (click) = "add(titleInput.value,priceInput.value,timeInput.value); titleInput.value= ''; priceInput.value = '';
+	timeInput.value='' " >Add</button>
+</div>
+<ul>
+   <li 
+   class = "product" 
+   [class.selected]="selectedProduct && selectedProduct.title === product.title"
+   *ngFor = "let product of products">
+
+	  <input [(ngModel)] = "product.title" />
+	  <div (click) = "onSelectProduct(product)">Title: {{ product.title }}</div>
+	  <div>Price: {{ product.price}} </div>
+	  <button (click) = "save(product)" >Save</button>
+	  <button (click) = "delete(product.id)">Delete</button>
+	</li>
+</ul>
+
+<app-product-detail [product]="selectedProduct">
+</app-product-detail>
